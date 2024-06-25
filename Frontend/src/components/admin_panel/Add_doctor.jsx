@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect } from 'react';
-import doctor_context from '../../context/Admin_context';
+import React, { useState, useContext, useEffect } from "react";
+import doctor_context from "../../context/Admin_context";
 
 const Add_doctor = ({ doc_data }) => {
   const { Add_doctor, update_doc_info } = useContext(doctor_context);
   const [edit, setEdit] = useState(false);
   const [input, setInput] = useState({
-    First_name: '',
-    Last_name: '',
-    Schedule: '',
-    Status: '',
-    image: ''
+    First_name: "",
+    Last_name: "",
+    Schedule: "",
+    Status: "Available",
+    image: "",
   });
 
   const [file, setFile] = useState(null);
@@ -38,20 +38,24 @@ const Add_doctor = ({ doc_data }) => {
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
-    console.log(event.target.files[0])
+    console.log(event.target.files[0]);
   };
 
   const handle_sumbit = async (e) => {
+    alert("Handle Sumbit");
     e.preventDefault();
     const formData = new FormData();
-    formData.append('First_Name', input.First_name);
-    formData.append('Last_Name', input.Last_name);
-    formData.append('Schedule', input.Schedule);
-    formData.append('Status', input.Status);
+    formData.append("First_Name", input.First_name);
+    formData.append("Last_Name", input.Last_name);
+    formData.append("Schedule", input.Schedule);
+    formData.append("Status", input.Status);
     if (file) {
-      formData.append('image', file);
+      formData.append("image", file);
     }
-console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.image)
+
+    console.log("THIS IS DATA OF USER");
+    console.log(input);
+    console.log(file);
     if (edit) {
       update_doc_info(doc_data._id, formData);
     } else {
@@ -66,9 +70,13 @@ console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.i
         data-modal-target="crud-modal"
         data-modal-toggle="crud-modal"
         onClick={toggleModal}
-        className={`text-white ${!edit ? 'bg-blue-500' : 'bg-none'} ${!edit ? 'hover:bg-blue-700' : ''} ${edit ? '-mt-[1vh]' : ''} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}
+        className={`text-white ${!edit ? "bg-blue-500" : "bg-none"} ${
+          !edit ? "hover:bg-blue-700" : ""
+        } ${
+          edit ? "-mt-[1vh]" : ""
+        } focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}
       >
-        {edit ? 'Edit Doctor' : 'Add Doctor'}
+        {edit ? "Edit Doctor" : "Add Doctor"}
       </button>
 
       {isModalOpen && (
@@ -81,9 +89,13 @@ console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.i
           <div className="relative w-full max-w-md p-4 mx-auto bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-center justify-between p-4 border-b rounded-t dark:border-gray-600">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mx-auto">
-                {edit ? 'Edit Doctor' : 'Add Doctor'}
+                {edit ? "Edit Doctor" : "Add Doctor"}
               </h3>
-              <button type="button" onClick={toggleModal} className="text-gray-400 hover:text-gray-900 dark:hover:text-white">
+              <button
+                type="button"
+                onClick={toggleModal}
+                className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              >
                 &#10060;
               </button>
             </div>
@@ -123,7 +135,10 @@ console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.i
                   />
                 </div>
                 <div className="w-full px-2 mt-4">
-                  <label htmlFor="Status" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label
+                    htmlFor="Status"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Status
                   </label>
                   <select
@@ -138,7 +153,10 @@ console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.i
                   </select>
                 </div>
                 <div className="w-full px-2 mt-4">
-                  <label htmlFor="file-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  <label
+                    htmlFor="file-input"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
                     Choose Image
                   </label>
                   <input
@@ -160,7 +178,7 @@ console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.i
                     type="submit"
                     className="px-4 py-2 font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-700"
                   >
-                    {edit ? 'Update Doctor' : 'Add Doctor'} &#8594;
+                    {edit ? "Update Doctor" : "Add Doctor"} &#8594;
                   </button>
                 </div>
               </div>
