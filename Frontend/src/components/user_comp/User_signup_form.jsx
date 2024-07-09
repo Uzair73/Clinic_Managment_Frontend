@@ -28,6 +28,7 @@ const User_signup_form = () => {
        input.Password, 
        input.Age, 
        input.Gender);
+       localStorage.setItem('Patient_name',input.First_Name,input.Last_Name)
     };
 
   const handleChange = (e) => {

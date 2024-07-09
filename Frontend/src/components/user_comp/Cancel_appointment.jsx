@@ -1,11 +1,15 @@
 import React, { useState, useContext } from 'react'
 import userContext from '../../context/user_context'
+import doctor_context from '../../context/Admin_context';
 
-const Cancel_appointment = ({id}) => {
+const Cancel_appointment = ({id, text_change}) => {
   const {delete_appointment} = useContext(userContext);
+  const {delete_doctor} = useContext(doctor_context)
+  // const [edit, setEdit] = useState(false);
   const handle_click = ()=>{
     console.log(id)
     delete_appointment(id)
+    delete_doctor(id)
     toggleModal()
   }
 
@@ -22,11 +26,11 @@ const Cancel_appointment = ({id}) => {
       <button
         data-modal-target="popup-modal"
         data-modal-toggle="popup-modal"
-        className="mx-4 mt-[30px] lg:relative lg:left-10 lg:p-[7px] text-button_text bg-cancel_bg_light hover:bg-blue-300 rounded font-lg font-[Mulish] font-bold max-sm:p-4 max-sm:mx-4" 
+        className={`mx-4 mt-[30px] ${!text_change === 'admin' ? 'lg:relative ' : ''} lg:left-10 lg:p-[7px] text-button_text ${text_change === 'admin' ? 'bg-none' : 'bg-cancel_bg_light'} ${text_change === 'admin' ? '' : 'hover:bg-blue-300'} rounded font-lg font-[Mulish] font-bold max-sm:p-4 max-sm:mx-4`} 
         type="button"
         onClick={toggleModal}
       >
-        Cancel
+        {text_change === 'admin' ? '❌' : 'Cancle'}
       </button>
 
       {/* Main modal */}
@@ -77,7 +81,8 @@ const Cancel_appointment = ({id}) => {
                     d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                   />
                 </svg>
-                <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this Appointment?</h3>
+                <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">{`${text_change === 'admin' ? 'Are you sure you want to delete this doctor?': 'Are you sure you want to delete this appointment?'} `}</h3>
+
                 <button
                   type="button"
                   className="text-cancel_text bg-cancel_bg_light focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"

@@ -5,11 +5,11 @@ const Add_doctor = ({ doc_data }) => {
   const { Add_doctor, update_doc_info } = useContext(doctor_context);
   const [edit, setEdit] = useState(false);
   const [input, setInput] = useState({
-    First_name: '',
-    Last_name: '',
-    Schedule: '',
-    Status: '',
-    image: ''
+    First_name: "",
+    Last_name: "",
+    Schedule: "",
+    Status: "Available",
+    image: ""
   });
 
   const [file, setFile] = useState(null);
@@ -56,6 +56,13 @@ console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.i
       update_doc_info(doc_data._id, formData);
     } else {
       Add_doctor(formData);
+      setInput({
+      First_name: "",
+      Last_name: "",
+      Schedule: "",
+      Status: "",
+      image: ""
+      })
     }
     toggleModal();
   };
@@ -66,7 +73,7 @@ console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.i
         data-modal-target="crud-modal"
         data-modal-toggle="crud-modal"
         onClick={toggleModal}
-        className={`text-white ${!edit ? 'bg-blue-500' : 'bg-none'} ${!edit ? 'hover:bg-blue-700' : ''} ${edit ? '-mt-[1vh]' : ''} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}
+        className={`text-white ${edit ? 'bg-blue-500' : 'bg-blue-600'} ${!edit ? 'hover:bg-blue-700' : ''} ${edit ? 'ml-[20vh]' : ''} ${!edit ? 'w-[12vw]' : ''} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}
       >
         {edit ? 'Edit Doctor' : 'Add Doctor'}
       </button>

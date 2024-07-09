@@ -55,15 +55,7 @@ const submit_form = async (Email, Password) => {
 const all_doctors = [];
 const [doctor, setdoctor] = useState(all_doctors);
 
-const Add_doctor = async (First_Name, Last_Name, Schedule, Status, Image) => {
-  if (Status == "" || Status?.length===0) Status="Available"
-  const formData = new FormData();
-  formData.append('First_Name', First_Name);
-  formData.append('Last_Name', Last_Name);
-  formData.append('Schedule', Schedule);
-  formData.append('Status', Status);
-  formData.append('Image', Image);
-
+const Add_doctor = async (formData) => {
   const res = await fetch(`${host}/admin/add-doctor`, {
     method: "POST",
     headers: {
@@ -120,6 +112,22 @@ const update_doc_info = async (id,First_Name, Last_Name, Schedule, Status ) => {
   setdoctor(new_doc)
 };
 
+//Functionality and API calling for deleting appointment
+const delete_doctor = async (id) => {
+  const response = await fetch(`${host}/admin/delete-doctor/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "auth-token": localStorage.getItem("admin-token"),
+    },
+  });
+  await response.json();
+  const del_dco = doctor.filter((e) => {
+    return e._id !== id;
+  });
+  setdoctor(del_dco)
+};
+
 // //Functionality and API calling for upload the doctor image
 // const upload_image = async (file) => {
 //   const formData = new FormData();
@@ -139,7 +147,6 @@ const update_doc_info = async (id,First_Name, Last_Name, Schedule, Status ) => {
 
 //Functionality and API calling for get the doctor image
 const fetchImage = async (id) => {
-
   try {
     const response = await fetch(`${host}/admin/image/${id}`, {
       method: "GET",
@@ -155,7 +162,7 @@ const fetchImage = async (id) => {
 };
 
     return (
-        <Admin_context.Provider value={{submit_form,signin_form, doctor, Add_doctor,fetch_doctors, update_doc_info,fetchImage}}>
+        <Admin_context.Provider value={{submit_form,signin_form, doctor, Add_doctor,fetch_doctors, update_doc_info,delete_doctor,fetchImage}}>
           {children}
         </Admin_context.Provider>
       );

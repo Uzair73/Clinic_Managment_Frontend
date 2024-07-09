@@ -193,7 +193,7 @@ const fetch_user_info = async () => {
 const update_info = []
 const [updates, setupdate] = useState(update_info)
 const update_user_info = async (id,First_Name,Last_Name,User_Name,Phone_Number,Password,Age,Gender) => {
-  const response = await fetch(`${host}/auth/update-info/6655628f7697ba7efdbf9960`, {
+  const response = await fetch(`${host}/auth/update-info/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -202,7 +202,7 @@ const update_user_info = async (id,First_Name,Last_Name,User_Name,Phone_Number,P
     body: JSON.stringify({First_Name,Last_Name,User_Name,Phone_Number,Password,Age,Gender}),
   });
   const res = await response.json();
-  // console.log(res)
+  console.log('This is the update-user-info api',res)
 
   // logic for the client
   let new_info = JSON.parse(JSON.stringify(updates));

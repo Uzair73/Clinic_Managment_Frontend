@@ -4,14 +4,14 @@ import userContext from '../../context/user_context';
 const Edit_user_info = () => {
   const { update_user_info, updates, fetch_user_info } = useContext(userContext);
   const [update, setUpdate] = useState({
-    id: fetch_user_info._id,
-    First_name: fetch_user_info.First_Name,
-    Last_name: fetch_user_info.Last_Name,
-    username: fetch_user_info.User_Name,
-    Number: fetch_user_info.Phone_Number,
-    Password: fetch_user_info.Password,
-    Gender: fetch_user_info.Gender,
-    Age: fetch_user_info.Age,
+    id: '',
+    First_name: '',
+    Last_name: '',
+    username: '',
+    Number: '',
+    Password: '',
+    Gender: '',
+    Age: '',
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,15 +29,16 @@ const Edit_user_info = () => {
         Gender: res.Gender,
         Age: res.Age,
       });
+      console.log(setUpdate.id);
     }
     if (isModalOpen) {
-      update_user_info();
       getUser();
     }
   }, [isModalOpen]);
 
   useEffect(() => {
-    setUpdate({
+    setUpdate((prevState) => ({
+      ...prevState,
       First_name: updates.First_name,
       Last_name: updates.Last_name,
       username: updates.username,
@@ -45,7 +46,7 @@ const Edit_user_info = () => {
       Password: updates.Password,
       Gender: updates.Gender,
       Age: updates.Age,
-    });
+    }));
   }, [updates]);
 
   const handle_Change = (e) => {
@@ -62,6 +63,7 @@ const Edit_user_info = () => {
   const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     await update_user_info(
+      update.id,
       update.First_name,
       update.Last_name,
       update.username,

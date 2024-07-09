@@ -16,10 +16,19 @@ export default {
         'admin_form': 'rgba(255, 255, 255, 1)',
         'doc_black' : 'rgba(37, 40, 43, 1)',
         'button_text' : 'rgba(45, 91, 255, 1)',
-        'disable_bg' : 'rgba(239, 239, 239, 1)'
+        'disable_bg' : 'rgba(239, 239, 239, 1)',
       },
       boxShadow:{
         'dark_shadow': '0px 1px 24.9px 0px rgba(0, 0, 0, 0.07)'
+      },
+      width: {
+        '11.2': '2.8rem',
+      },
+      borders:{
+        'search-color' : 'rgba(196, 196, 196, 1)',
+      },
+      borderWidth: {
+        'search': '1px',
       },
     },
   },

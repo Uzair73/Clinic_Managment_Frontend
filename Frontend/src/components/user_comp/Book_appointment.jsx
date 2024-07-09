@@ -31,7 +31,7 @@ const Book_appointment = (props) => {
       <button
         data-modal-target="crud-modal"
         data-modal-toggle="crud-modal"
-        className="mx-4 mt-8 sm:mt-4 sm:relative sm:left-10 p-3 bg-[#1E9AF1] hover:bg-blue-700 rounded font-lg font-[Mulish] font-bold text-white max-sm:w-full"
+        className="mx-10 mt-8 p-3 bg-[#1E9AF1] hover:bg-blue-700 rounded font-lg font-[Mulish] font-bold text-white max-sm:w-full"
         type="button"
         onClick={toggleModal}
       >
