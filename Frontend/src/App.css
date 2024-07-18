@@ -4,3 +4,10 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+.active_class{
+  color: #1E9AF1;
+}
+.tran{
+  transition: all 0.7s ease;
+  transform: scale(1.2);
+}
