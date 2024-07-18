@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode";
 
 const Admin_state = ({children}) => {
     // const [admin, setAdmin] = useState(null)
-    const host = 'http://localhost:5000';
+    const host = import.meta.env.VITE_HOST_PORT;
     const navigate = useNavigate();
 
 //Functionality and API calling for signup form
@@ -85,34 +85,36 @@ const fetch_doctors = async () => {
 };
 
 // Functionality and API calling for update doctor info
-const update_doc_info = async (id,First_Name, Last_Name, Schedule, Status ) => {
+const update_doc_info = async (id, formData) => {
   const response = await fetch(`${host}/admin/update-doctor-info/${id}`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
       "auth-token": localStorage.getItem("admin-token"),
     },
-    body: JSON.stringify({First_Name, Last_Name, Schedule, Status}),
+    body: formData,
   });
-  await response.json();
-
+  const data = await response.json();
+  console.log(data)
+  
   // logic for the client
   let new_doc = JSON.parse(JSON.stringify(doctor));
   for (let i = 0; i < new_doc.length; i++) {
     const element = new_doc[i];
     if (element._id === id) {
-      console.log(id)
-      new_doc[i].First_Name = First_Name;
-      new_doc[i].Last_Name = Last_Name;
-      new_doc[i].Schedule = Schedule;
-      new_doc[i].Status = Status;
+      new_doc[i].First_Name = formData.get('First_Name');
+      new_doc[i].Last_Name = formData.get('Last_Name');
+      new_doc[i].Schedule = formData.get('Schedule');
+      new_doc[i].Status = formData.get('Status');
+      if (formData.get('image')) {
+        new_doc[i].image = URL.createObjectURL(formData.get('image'));
+      }
       break;
     }
   }
-  setdoctor(new_doc)
+  setdoctor(new_doc);
 };
 
-//Functionality and API calling for deleting appointment
+//Functionality and API calling for delete doctor
 const delete_doctor = async (id) => {
   const response = await fetch(`${host}/admin/delete-doctor/${id}`, {
     method: "DELETE",

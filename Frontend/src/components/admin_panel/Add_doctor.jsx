@@ -73,7 +73,7 @@ console.log(input.First_name,input.Last_name,input.Schedule,input.Status,input.i
         data-modal-target="crud-modal"
         data-modal-toggle="crud-modal"
         onClick={toggleModal}
-        className={`text-white ${edit ? 'bg-blue-500' : 'bg-blue-600'} ${!edit ? 'hover:bg-blue-700' : ''} ${edit ? 'ml-[20vh]' : ''} ${!edit ? 'w-[12vw]' : ''} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}
+        className={`text-white ${edit ? 'bg-blue-500' : 'bg-blue-600'} ${!edit ? 'hover:bg-blue-700' : ''} ${edit ? 'ml-[20vh]' : ''} ${!edit ? 'w-[12vw]' : ''} ${!edit ? 'max-sm:w-[85vw]' : ''} focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2`}
       >
         {edit ? 'Edit Doctor' : 'Add Doctor'}
       </button>

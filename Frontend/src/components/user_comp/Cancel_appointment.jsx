@@ -26,7 +26,7 @@ const Cancel_appointment = ({id, text_change}) => {
       <button
         data-modal-target="popup-modal"
         data-modal-toggle="popup-modal"
-        className={`mx-4 mt-[30px] ${!text_change === 'admin' ? 'lg:relative ' : ''} lg:left-10 lg:p-[7px] text-button_text ${text_change === 'admin' ? 'bg-none' : 'bg-cancel_bg_light'} ${text_change === 'admin' ? '' : 'hover:bg-blue-300'} rounded font-lg font-[Mulish] font-bold max-sm:p-4 max-sm:mx-4`} 
+        className={`mx-4 mt-[30px] ${!text_change === 'admin' ? 'lg:relative ' : ''} ${text_change === 'admin' ? 'max-sm:hidden' : ''} lg:left-10 ${text_change === 'admin' ? '' : 'lg:p-[12px]'} text-button_text ${text_change === 'admin' ? 'bg-none' : 'bg-cancel_bg_light'} ${text_change === 'admin' ? '' : 'hover:bg-blue-300'} rounded font-lg font-[Mulish] font-bold max-sm:p-4 max-sm:mx-4`} 
         type="button"
         onClick={toggleModal}
       >

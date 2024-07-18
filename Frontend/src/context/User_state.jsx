@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 const User_state = ({children}) => {
   const navigate = useNavigate();
 
-  const host = 'http://localhost:5000';
+  const host = import.meta.env.VITE_HOST_PORT;
 
   //Functionality and API calling for signup form
   const submit_form = async (First_Name, Last_Name, User_Name, Phone_Number, Password, Age, Gender) => {

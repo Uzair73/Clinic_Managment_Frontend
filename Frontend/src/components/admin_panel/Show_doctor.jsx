@@ -47,10 +47,10 @@ const Show_doctor = ({ searchQuery,change }) => {
         filteredDoctors.map((doc) => (
           <div
             key={doc._id}
-            className="box flex my-2 justify-between mx-5 max-sm:mx-0 max-sm:w-full max-sm:flex-col"
+            className="box max-sm:bg-[#FBF8F8] max-sm:border-b-2 max-sm:border-[beige] flex my-2 justify-between mx-5 max-sm:mx-0 max-sm:w-full max-sm:flex-col"
           >
-            <img className="max-sm:mx-1 w-[32vh]" src={imageUrls[doc._id]} alt="doctor-img"/>
-            <div className="inner-box flex flex-col justify-center bg-[#FBF8F8] w-[24vw] p-[40px] max-sm:w-full">
+            <img className="max-sm:mx-24 max-sm:my-4 w-[32vh] h-[40vh]" src={imageUrls[doc._id]} alt="doctor-img"/>
+            <div className="inner-box flex flex-col justify-end bg-[#FBF8F8] w-[24vw] h-[40vh] max-sm:h-[32vh] p-[40px] max-sm:w-full">
               <div className="flex justify-end -mt-[12vh]">{Admin_dashboard && <Remove_doctor id={doc._id} text_change="admin"/>}</div>
               <h1 className="text-[2rem] my-2 font-[Lato]">
                 {doc.First_Name}

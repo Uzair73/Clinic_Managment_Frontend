@@ -37,7 +37,7 @@ const User_signup_form = () => {
 
   return (
     <div className="container flex flex-col lg:flex-row gap-3 mx-auto">
-      <div className="box bg-[#53B78133] lg:h-[105vh] lg:w-[58vw] w-full flex justify-center items-center">
+      <div className="box bg-[#53B78133] lg:w-[58vw] w-full flex justify-center items-center">
         <span>
           <img src="/Images/bro.png" alt="signin" className="py-7 mx-auto" />
         </span>

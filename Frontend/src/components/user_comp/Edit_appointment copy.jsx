@@ -32,7 +32,7 @@ const Edit_appointment = ({ id, Appointment_Date, Appointment_Time, Issue }) => 
       <button
         data-modal-target="crud-modal"
         data-modal-toggle="crud-modal"
-        className="mx-4 mt-8 sm:mt-4 sm:relative sm:left-10 p-3 bg-[#1E9AF1] hover:bg-blue-700 rounded font-lg font-[Mulish] font-bold text-white max-sm:w-[43vw]"
+        className="mx-4 mt-8 sm:mt-[1.5rem] sm:relative sm:left-10 p-3 bg-[#1E9AF1] hover:bg-blue-700 rounded font-lg font-[Mulish] font-bold text-white max-sm:w-[43vw]"
         type="button"
         onClick={toggleModal}
       >

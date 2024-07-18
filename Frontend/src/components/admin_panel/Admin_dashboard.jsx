@@ -7,12 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 const Admin_dashboard = () => {
   const navigate = useNavigate();
-  const { appointment, fetch_appointments} = useContext(userContext);
-  const  {doctor, fetch_doctors } = useContext(admin_context);
+  const { appointment, fetch_appointments } = useContext(userContext);
+  const { doctor, fetch_doctors } = useContext(admin_context);
   const [activeSection, setActiveSection] = useState('dashboard');
   const [searchQuery, setSearchQuery] = useState('');
-  // const [count, setcount] = useState(0);
-  // const [doc_count, setdoc_count] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     if (fetch_appointments) {
@@ -22,15 +25,6 @@ const Admin_dashboard = () => {
       fetch_doctors();
     }
   }, []);
-
-  // useEffect(() => {
-  //   if (doctor) {
-  //     setdoc_count(doctor.length);
-  //   }
-  //   if (appointment) {
-  //     setcount(appointment.length);
-  //   }
-  // }, [doctor, appointment]);
 
   const handle_click = () => {
     localStorage.removeItem("admin-token");
@@ -51,12 +45,12 @@ const Admin_dashboard = () => {
   return (
     <>
       <div className="container-fluid px-2">
-        <header className="flex flex-col md:flex-row justify-between items-center w-full py-4 px-4 bg-white border-solid border-b-2 border-black sticky top-0">
+        <header className="flex md:flex-row justify-between items-center w-full py-4 px-4 bg-white border-solid border-b-2 border-black sticky top-0">
           <div className="flex items-center mb-4 md:mb-0">
             <img className="h-16 md:h-20 mr-3 md:mr-5" src="/Images/doctor.png" alt="Logo" />
             <h1 className="text-lg md:text-2xl font-bold">Clinic Management System</h1>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center max-sm:hidden">
             <div className="mr-4">
               <Add_doctor />
             </div>
@@ -64,6 +58,45 @@ const Admin_dashboard = () => {
               <img className="h-5" src="/Images/Vector.png" alt="profile" />
             </div>
           </div>
+
+          {/* Mobile menu */}
+          <div className="flex justify-end md:hidden">
+            <button
+              onClick={toggle}
+              className="text-gray-800 p-3 focus:outline-none"
+            >
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"}
+                ></path>
+              </svg>
+            </button>
+
+            <div
+              className={`${
+                isOpen ? "block" : "hidden"
+              } absolute top-20 left-0 right-0 mt-2 w-full bg-white rounded-lg shadow-lg z-50 transition-all duration-300 ease-in-out`}
+            >
+              <div className="flex flex-col items-center p-4">
+                <div className="mb-4">
+                  <Add_doctor />
+                </div>
+                <div className="w-5 cursor-pointer bg-black" onClick={handle_click}>
+                  <img className="h-5" src="/Images/Vector.png" alt="profile" />
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Mobile menu */}
         </header>
         <section>
           <div className="flex md:flex-row justify-around mx-2 md:mx-12 my-4 md:my-9 gap-4 md:gap-20 text-lg font-bold text-doc_black">
